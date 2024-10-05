@@ -17,23 +17,28 @@ class CloseButton(pg.sprite.Sprite):
 
 def handle_particles(all_ptcl):
     for particle in all_ptcl:
-        particle[1][1] += 0.2   # comment out for original
+        particle[1][1] += 0.2   # gravity
         particle[0][0] += particle[1][0]
         particle[0][1] += particle[1][1]
-        particle[2] -= 0.1
+        # particle[2] -= 0.1      # shrinkage
         pg.draw.circle(cf.SCREEN,
                        particle[3],
                        (int(particle[0][0]), int(particle[0][1])),
                        int(particle[2]))
+        
         if particle[2] <= 0:
             all_ptcl.remove(particle)
 
+def kill_particles(particles):
+    for particle in particles:
+        if particle[0][0] + 
 
 def spawn_colors(num_part, part_list, pos, col):
     for _ in range(num_part):
         x_pos = cf.SCREEN_NINTH*pos-(cf.SCREEN_NINTH/2) + random.randint(-40, 40)
         y_pos = cf.SCREEN_RECT.h-15
-        x_vel = random.randint(0, 20)/10 - 1
+        x_vel = random.choice(list(set([x for x in range(0, 40)]) - set([x for x in range(15, 25)])))/10 - 2
+        # x_vel = random.randint(0, 20)/10 - 1   # old
         y_vel = -random.randint(15, 20)     # original = (2, 7)
         size = random.randint(4, 20)
 
